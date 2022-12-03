@@ -4,7 +4,6 @@ from dataclasses import dataclass
 class Compartment:
     items: str
 
-
 @dataclass
 class Rucksack:
     compartment1: Compartment
@@ -19,7 +18,6 @@ class Rucksack:
         return set(self.compartment1.items) & set(self.compartment2.items)
 
     def compute_sum(self) -> int:
-
         intersect = self.find_intersect()
 
         res = 0
@@ -29,7 +27,6 @@ class Rucksack:
 
     def get_all_items(self) -> str:
         return self.compartment1.items + self.compartment2.items 
-
 
 @dataclass
 class Group:
@@ -47,13 +44,11 @@ class Group:
         return ord(letter) - ord('z') + 26
 
     def compute_priority(self) -> int:
-
         common = self.find_common()
 
         res = 0
         for c in common:
             res += self.priority(c)
-
         return res
 
 def fill_rucksacks(file_name:str) -> list[Rucksack]:
@@ -83,11 +78,9 @@ def make_groups(rucksacks: list[Rucksack]) -> list[Group]:
         elf1 = rucksacks[i]
         elf2 = rucksacks[i+1]
         elf3 = rucksacks[i+2]
-        
 
         g = Group(elf1, elf2, elf3)
         groups.append(g)
-
     return groups
 
 def compute_groups(groups: list[Group]) -> int:
