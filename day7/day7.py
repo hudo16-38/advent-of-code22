@@ -9,11 +9,13 @@ class Directory:
     def put_child(self, name, child):
             self.children[name] = child
             child.parent = self
+
     def __str__(self):
         res = self.name
         for ch in self.children.values():
             res += "\n" + str(ch)
         return res
+
     def __repr__(self):
         return self.name
 
@@ -95,7 +97,7 @@ class Tree:
     def get_info(self) -> list[list[str, int]]:
         return self._mem(self.root)
 
-    def get_directories(self):
+    def get_directories(self) -> list[list[str, int]]:
         return [(name, val) for name, val, type in self.get_info() if type == "dir"]
 
     def find_sum_with_boundary(self, boundary=100000) -> int:
