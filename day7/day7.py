@@ -97,7 +97,7 @@ class Tree:
     def get_info(self) -> list[list[str, int]]:
         return self._mem(self.root)
 
-    def get_directories(self) -> list[list[str, int]]:
+    def get_directories(self) -> list[tuple[str, int]]:
         return [(name, val) for name, val, type in self.get_info() if type == "dir"]
 
     def find_sum_with_boundary(self, boundary=100000) -> int:
