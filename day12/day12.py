@@ -45,8 +45,10 @@ class HillClimb:
     def fitness(self, y, x):
         return self.map[y][x]
 
-    def hill_climb(self) -> int|float:
-        queue = deque([(self.start, 0)])
+    def hill_climb(self, start=None) -> int|float:
+        if start is None: start = self.start
+
+        queue = deque([(start, 0)])
         visited = set()
 
         while queue:
@@ -60,10 +62,25 @@ class HillClimb:
             visited.add(pos)
             
             for n in self.neigbours(*pos):
-                if abs(self.fitness(*pos) -  self.fitness(*n)) <= 1:
+                if self.fitness(*n) - self.fitness(*pos) <= 1:
                     queue.append((n, count+1))
 
         return float("inf")
+
+    def all_starts(self):
+        n, m = len(self.map), len(self.map[0])
+        res = []
+        for y in range(n):
+            for x in range(m):
+                if self.map[y][x] == ord('a'):
+                    res.append((y, x))
+        return res
+    
+    def all_climbs(self):
+        res = []
+        for start in self.all_starts():
+            res.append(self.hill_climb(start))
+        return min(res)
 
 if __name__ == "__main__":
     map = HillClimb("test_input.txt")
@@ -71,3 +88,5 @@ if __name__ == "__main__":
     part1 = map.hill_climb()
 
     print(f"{part1=}")
+    part2 = map.all_climbs()
+    print(f"{part2=}")
