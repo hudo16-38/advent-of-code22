@@ -64,7 +64,7 @@ def transfrom_data(data):
     
 
 if __name__ == "__main__":
-    data = process_input("test_input.txt")
+    #data = process_input("test_input.txt")
     data = process_input("input.txt")
     part1 = compute_result(data)
     print(part1)
@@ -73,7 +73,7 @@ if __name__ == "__main__":
 
 
     part2 = 1
-    print(*new_data,sep="\n")
+    #print(*new_data,sep="\n")
     for index, lst in enumerate(new_data, start=1):
         if lst in ([[2]], [[6]]):
             part2 *= index
